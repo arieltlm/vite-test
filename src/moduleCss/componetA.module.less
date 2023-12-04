@@ -1,0 +1,15 @@
+
+.content{
+    width:400px;
+    height:100px;
+    background-color: yellow;
+    margin: (50px / 2);
+    padding: 100px / 4; // math:always的时候得到的css会计算得到25px，math为parens-division（4.0默认，希望所有得计算都带括号，可以直接进行计算）时，不计算
+    .box{
+        //clamp是设置width为父元素的30%，但是需要在100px和200px之间，如果超出范围的话会取最小值100px或者最大值200px
+        width:clamp(100px, 30%, 200px); // width: max(100px, min(30%, 200px)); preset-env会帮助我们做语法降级 vite内部会有一个主流浏览器的支持表
+        user-select: none;  // postcss给自动补全-webkit-user-select: none;
+                            // -moz-user-select: none;
+                            //  user-select: none;
+    }
+}

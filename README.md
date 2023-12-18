@@ -273,6 +273,27 @@ postcss:{// 可以在这里写，也可以在根目录下写一个postcss.config
 
 ```
 
+## path的使用
+
+ node端去读取文件或者操作文件的时候，如果发现你用的是相对路径，则会去使用process.wd()来进行对应的拼接；
+
+process.cwd: 获取当前的node执行目录；
+
+```js
+const fs = require("fs"); // 处理文件的模块(读文件，修改文件等一系列操作 )
+const path = require("path"); // path本质上就是一个字符串处理模块，它里面有非常多的路径字符串处理方法;
+// path.resolve封装了可以处理mac、windows兼容性不同斜杠的等的问题的方法
+const result = fs,readFileSync(path.resolve(_dirname,",/variable,css"));
+```
+
+***
+
+
+
+commonjs规范  注入了几个变量，__dirname
+
+![image-20231204170722916](./README-images/commonjs注入变量.png)
+
 
 
 ## vite 处理静态资源

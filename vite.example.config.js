@@ -1,4 +1,5 @@
 import {defineConfig} from 'vite'
+import path from 'path'
 
 export default defineConfig({
     optimizeDeps:{
@@ -32,7 +33,19 @@ export default defineConfig({
             },
             sass:{}
         },
-        devSourcemap:true
+        devSourcemap:true,
+        postcss:{// 可以在这里写，也可以在根目录下写一个postcss.config.js，vite也会去自动取读取，此处的优先级比postcss.config.js高
+            plugins:[
+                postcssPresetEnv({// 预设里包括了自动补全、降级等
+                    importFrom:path.resolve(__dirname,'./src/moduleCss/variable.css')
+                })
+            ], 
+        }
 
+    },
+    resolve: {
+        alias:{
+            "@":path.resolve(__dirname,'./src')
+        }
     }
 })
